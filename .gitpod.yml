@@ -7,11 +7,11 @@ ports:
     onOpen: ignore
 tasks:
   - init: >
-      mkdir -p /workspace/wpGitPod2/public &&
-      cd /workspace/wpGitPod2/public &&
-      wp core download --locale=ja --path=/workspace/wpGitPod2/public &&
+      mkdir -p /workspace/newgitpod2/public &&
+      cd /workspace/newgitpod2/public &&
+      wp core download --locale=ja --path=/workspace/newgitpod2/public &&
       wp core config --dbname=wp_sample --dbuser=root --dbpass='' --dbhost=localhost --dbprefix=wp_ &&
       wp db create &&
       wp core install --url=$(gp url 8001) --title=SiteTitle --admin_user=admin --admin_password=password --admin_email=my@email.com
     command: apachectl start
-  - command: gp ports await 8001 && gp preview $(gp url 8001)
+  - command: gp await-port 8001 && gp preview $(gp url 8001)
